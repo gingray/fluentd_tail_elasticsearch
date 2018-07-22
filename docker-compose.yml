@@ -1,0 +1,14 @@
+version: '3'
+services:
+  fluentdfiles:
+    build: ./fluentd
+    volumes:
+      - /home/app/logs:/fluentd/log/
+      - /home/app/flunetd/conf:/fluentd/etc/
+      - /home/app/flunetd/buffer:/fluentd/buffer
+      - /home/app/fluentd/pos:/fluentd/pos
+    environment:
+      - FLUENTD_CONF=custom.conf
+      - FLUENTD_OPT=-v
+    network_mode: "host"
+    restart: "no"
